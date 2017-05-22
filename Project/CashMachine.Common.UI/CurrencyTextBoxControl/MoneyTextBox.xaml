@@ -1,0 +1,20 @@
+﻿<currencyTextBoxControl:CurrencyTextBox x:Class="CashMachine.Common.UI.CurrencyTextBoxControl.MoneyTextBox"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:currencyTextBoxControl="clr-namespace:CashMachine.Common.UI.CurrencyTextBoxControl"
+             mc:Ignorable="d">
+    <currencyTextBoxControl:CurrencyTextBox.Style>
+        <Style BasedOn="{StaticResource {x:Type TextBox}}"
+           TargetType="currencyTextBoxControl:CurrencyTextBox">
+            <Setter Property="TextAlignment" Value="Right" />
+            <Style.Triggers>
+                <Trigger Property="IsNegative" Value="True">
+                    <Setter Property="Foreground" Value="Red" />
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+    </currencyTextBoxControl:CurrencyTextBox.Style>
+</currencyTextBoxControl:CurrencyTextBox>
+

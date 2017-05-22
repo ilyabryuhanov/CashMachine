@@ -3,3 +3,18 @@
 ################################################################################
 
 /CashMachine.Common.CrossCutting/bin
+/CashMachine.Common.CrossCutting/obj
+/CashMachine.Common.UI/obj
+/CashMachine.Common.UI/bin
+/CashMachine.DAL.Entities/obj
+/CashMachine.DAL.Entities/bin
+/CashMachineApplication/obj
+/CashMachineApplication/bin
+/Project/CashMachine.Common.CrossCutting/obj
+/Project/CashMachine.Common.CrossCutting/bin
+/Project/CashMachine.Common.UI/obj
+/Project/CashMachine.Common.UI/bin
+/Project/CashMachine.DAL.Entities/bin
+/Project/CashMachine.DAL.Entities/obj
+/Project/CashMachineApplication/bin
+/Project/CashMachineApplication/obj

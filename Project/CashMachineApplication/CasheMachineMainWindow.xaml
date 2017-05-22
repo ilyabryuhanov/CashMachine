@@ -1,0 +1,40 @@
+﻿<Window x:Class="CashMachineApplication.CasheMachineMainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:CashMachineApplication"
+        xmlns:viewModels="clr-namespace:CashMachineApplication.ViewModels"
+        xmlns:views="clr-namespace:CashMachineApplication.Views"
+        xmlns:converters="clr-namespace:CashMachineApplication.Converters"
+        xmlns:currencyTextBoxControl="clr-namespace:CashMachine.Common.UI.CurrencyTextBoxControl;assembly=CashMachine.Common.UI"
+        mc:Ignorable="d" Title="CurrencyTextBox Example"
+        Width="887"
+        Height="381"
+        FontFamily="Consolas"
+        FontSize="18">
+    <Window.Resources>
+       
+    </Window.Resources>
+    <Grid >
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+
+        </Grid.RowDefinitions>
+        
+        <Button Content="Обновить" HorizontalAlignment="Left" Margin="10" Command="{Binding RefreshCommand}"/>
+        
+        <TabControl Grid.Row="1">
+            <TabItem Header="Продукты">
+                <views:ProductCreateView DataContext="{Binding ProductCreateViewModel}" />
+            </TabItem>
+            <TabItem Header="Документы">
+                <views:DocumentsView DataContext="{Binding DocumentsViewModel}"/>
+            </TabItem>
+        </TabControl>
+        
+        
+    </Grid>
+</Window>
+
