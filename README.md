@@ -8,5 +8,8 @@ SqlLocalDB.exe create MyInstance
 connectionString="Data Source=(localDb)\MyInstance;
          Trusted_Connection=Yes;
          AttachDbFilename=путь к файлу БД\CashMachineTest.mdf"
+         
          где путь к файлу БД - физическое расположение проекта\CashMachineApplication\AppData (к примеру:D:\Git\Project\CashMachineApplication\AppData\CashMachineTest.mdf)
+         
+         
          (localDb)\MyInstance - если нет .\SQLExpress, если есть то Data Source=.\SQLExpress
