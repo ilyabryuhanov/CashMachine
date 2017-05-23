@@ -14,7 +14,7 @@ using CashMachineApplication.DbContext;
 
 namespace CashMachineApplication.ViewModels
 {
-    public class DocumentViewModel :ObservableObject
+    public class DocumentViewModel : ObservableObject
     {
         private static string OpenString = "Открыт";
         private static string ClosedString = "Закрыт";
@@ -26,14 +26,15 @@ namespace CashMachineApplication.ViewModels
         private readonly Document _document;
         private DocumentStatus _documentStatus;
         private int _totalCount;
-        private Decimal _totalSum;
+        private decimal _totalSum;
         private DocumentType _documentType;
+        private decimal _changeWith;
 
         public DocumentViewModel(Document document)
         {
             _document = document;
             DocumentType = _document.DocumentType;
-            ProductOrders = _document.ProductOrders?? new ObservableCollection<ProductOrder>();
+            ProductOrders = _document.ProductOrders ?? new ObservableCollection<ProductOrder>();
             DocumentStatus = DocumentStatus.Closed;
             TotalCount = ProductOrders.Count;
             TotalSum = ProductOrders.Sum(o => o.TotalPrice);
@@ -43,7 +44,7 @@ namespace CashMachineApplication.ViewModels
             {
                 productOrder.PropertyChanged += ProductOrder_PropertyChanged;
             }
-            AddProductOrderCommand = new RelayCommand((o)=>true,AddProductOrder);
+            AddProductOrderCommand = new RelayCommand((o) => true, AddProductOrder);
             DeleteSelectedProductOrderCommand = new RelayCommand((o) => true, RemoveSelectedProductOrder);
         }
 
@@ -61,7 +62,7 @@ namespace CashMachineApplication.ViewModels
 
         private void AddProductOrder(object obj)
         {
-            var productOrder = new ProductOrder() {Document = _document} ;
+            var productOrder = new ProductOrder() { Document = _document };
             ProductOrders.Add(productOrder);
             productOrder.PropertyChanged += ProductOrder_PropertyChanged;
         }
@@ -102,11 +103,19 @@ namespace CashMachineApplication.ViewModels
             set { this.Set(ref _totalCount, value); }
         }
 
-        public Decimal TotalSum
+        public decimal TotalSum
         {
             get { return _totalSum; }
-            set { this.Set(ref _totalSum, value); }
+            set { this.Set(ref _totalSum, value, val => this.RaisePropertyChanged("Change")); }
         }
+
+        public decimal ChangeWith
+        {
+            get { return _changeWith; }
+            set { this.Set(ref _changeWith, value, val => this.RaisePropertyChanged("Change")); }
+        }
+
+        public decimal Change => ChangeWith - TotalSum;
 
         public DocumentType DocumentType
         {
@@ -117,7 +126,7 @@ namespace CashMachineApplication.ViewModels
         public DocumentStatus DocumentStatus
         {
             get { return _documentStatus; }
-            set { this.Set(ref _documentStatus, value,val=> this.RaisePropertyChanged("DocumentStatusString")); }
+            set { this.Set(ref _documentStatus, value, val => this.RaisePropertyChanged("DocumentStatusString")); }
         }
 
         public string DocumentTypeString => _document.DocumentType == DocumentType.Buy ? BuyString : SellString;
